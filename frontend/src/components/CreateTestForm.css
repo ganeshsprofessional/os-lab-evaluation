@@ -1,0 +1,205 @@
+/* src/styles/createTestForm.css */
+.test-form-root {
+  position: scroll;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,251,231,0.98);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.test-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.5rem 1.2rem 2.5rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(253,160,133,0.1);
+}
+
+.test-form-title {
+  font-size: 2.2rem;
+  color: #fda085;
+  margin: 0;
+  font-weight: bold;
+}
+
+.back-button {
+  background: none;
+  border: 2px solid #fda085;
+  color: #fda085;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.back-button:hover {
+  background: #fda085;
+  color: #fff;
+}
+
+.test-form-container {
+  background: white;
+  max-width: 850px;
+  margin: 2.5rem auto;
+  padding: 2.2rem 4rem 2.2rem 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(253,160,133,0.15);
+  max-height: 74vh;
+  overflow-y: auto;
+  animation: fadeIn 0.7s;
+  font-size: 1.18rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.test-form-container::-webkit-scrollbar {
+  width: 8px;
+}
+.test-form-container::-webkit-scrollbar-track {
+  background: #fffbe7;
+  border-radius: 4px;
+}
+.test-form-container::-webkit-scrollbar-thumb {
+  background: #fda085;
+  border-radius: 4px;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 1.3rem;
+}
+
+.label-text {
+  display: block;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 0.45rem;
+  font-size: 1.22rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid #fda085;
+  border-radius: 8px;
+  font-size: 1.18rem;
+  background: #fffbe7;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  border-color: #f6d365;
+  box-shadow: 0 0 10px rgba(253,160,133,0.4);
+  outline: none;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.questions-section {
+  border-top: 2px solid #f6d365;
+  padding-top: 1.5rem;
+}
+
+.question-block {
+  margin-bottom: 2rem;
+  padding: 1.2rem;
+  background: #fffbe7;
+  border-radius: 8px;
+}
+
+.terminal-checkbox {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin: 1rem 0;
+  color: #666;
+  font-size: 1.08rem;
+}
+
+.terminal-section {
+  margin-top: 1.5rem;
+  padding-left: 2rem;
+  border-left: 3px solid #fda085;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.command-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.edit-commands-btn {
+  background: #fda085;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+.edit-commands-btn:hover {
+  background: #f6d365;
+}
+
+.order-info {
+  color: #666;
+  font-size: 1.05rem;
+  margin-top: 0.3rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  background: linear-gradient(90deg, #f6d365, #fda085);
+  color: white;
+  padding: 1rem 2.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.18rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.submit-button:hover {
+  background: linear-gradient(90deg, #fda085, #f6d365);
+}
+
+.reset-button {
+  background: #fff;
+  border: 2px solid #fda085;
+  color: #fda085;
+  border-radius: 8px;
+  padding: 1rem 2.2rem;
+  font-size: 1.18rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.reset-button:hover {
+  background: #fda085;
+  color: #fff;
+}

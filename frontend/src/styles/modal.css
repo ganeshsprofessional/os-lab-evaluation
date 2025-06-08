@@ -1,0 +1,135 @@
+.terminal-modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.terminal-modal-content {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem 2.2rem;
+  min-width: 340px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.18);
+  animation: popIn 0.4s;
+}
+@keyframes popIn {
+  from { transform: scale(0.85); opacity: 0;}
+  to { transform: scale(1); opacity: 1;}
+}
+
+.command-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.command-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid #fda085;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.add-command-btn {
+  background: #fda085;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-command-btn:hover {
+  background: #f6d365;
+}
+
+.command-list {
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.command-list::-webkit-scrollbar {
+  width: 6px;
+}
+.command-list::-webkit-scrollbar-thumb {
+  background: #fda085;
+  border-radius: 4px;
+}
+
+.command-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  background: #fffbe7;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: move;
+  font-size: 1rem;
+}
+.drag-handle {
+  margin-right: 0.7rem;
+  font-size: 1.2rem;
+  cursor: grab;
+  color: #fda085;
+}
+.remove-btn {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.7rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.remove-btn:hover {
+  background: #e63946;
+}
+
+.enforce-order-checkbox {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.save-btn, .cancel-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.save-btn {
+  background: #fda085;
+  color: white;
+}
+.save-btn:hover {
+  background: #f6d365;
+}
+
+.cancel-btn {
+  background: #eee;
+  color: #666;
+}
+.cancel-btn:hover {
+  background: #ddd;
+}

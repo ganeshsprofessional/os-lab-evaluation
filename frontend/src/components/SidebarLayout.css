@@ -1,0 +1,43 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  min-height: 100vh;
+  background: #fffbe7;
+  overflow-y: auto;
+  transition: margin-left 0.2s;
+}
+
+.sidebar-bottom-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1.2rem;
+}
+
+.sidebar-collapse-btn,
+.sidebar-exit-btn {
+  background: #fff;
+  border: 1.5px solid #fda085;
+  color: #fda085;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  font-size: 1.2rem;
+}
+.sidebar-collapse-btn:hover,
+.sidebar-exit-btn:hover {
+  background: #fda085;
+  color: #fff;
+  border-color: #fda085;
+}

@@ -1,0 +1,76 @@
+.catalogue-section {
+  margin: 4rem 0 2rem 0;
+  padding: 0 2vw;
+  position: relative;
+}
+.catalogue-title {
+  font-size: 2rem;
+  color: #fda085;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.catalogue-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.arrow {
+  background: #fff;
+  border: 2px solid #fda085;
+  color: #fda085;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 1rem;
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+.arrow:hover {
+  background: #fda085;
+  color: #fff;
+}
+.catalogue-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+.movie-card {
+  min-width: 300px;
+  background: #fffbe7;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #fda08522;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.movie-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px #fda08544;
+}
+.movie-img {
+  width: 180px;
+  height: 120px;
+  background: #fda08533;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fda085;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.movie-info h3 {
+  margin: 0;
+  color: #fda085;
+}
+.movie-info p {
+  color: #444;
+  font-size: 1rem;
+}

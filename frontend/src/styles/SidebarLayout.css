@@ -1,0 +1,51 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+.ps-sidebar-container {
+  border-radius: 1.5rem;
+  margin: 1.5rem 0.5rem;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(60,60,60,0.07);
+}
+
+.ps-menuitem-root {
+  margin: 1.2rem 0;
+  transition: background 0.2s;
+}
+
+.ps-menuitem-root:hover, .ps-menuitem-root.ps-active {
+  background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+  border-radius: 10px;
+}
+
+.ps-menuitem-icon {
+  font-size: 2rem;
+  color: #fda085;
+  transition: color 0.2s;
+}
+
+.ps-menuitem-root.ps-active .ps-menuitem-icon {
+  color: #fff;
+}
+
+/* Custom Scrollbar for Main Content */
+.dashboard-main::-webkit-scrollbar {
+  width: 12px;
+}
+.dashboard-main::-webkit-scrollbar-thumb {
+  background: #fda085;
+  border-radius: 8px;
+}
+.dashboard-main::-webkit-scrollbar-track {
+  background: #f6f7fb;
+}

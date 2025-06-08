@@ -1,0 +1,124 @@
+.oslab-home {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fffbe7;
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* Animated horizontal background text */
+.scroll-text {
+  position: fixed;
+  top: 0;
+  left: -800px;
+  white-space: nowrap;
+  z-index: -1;
+  transition: all 0.5s;
+  width: 100vw;
+  pointer-events: none;
+}
+.bg-text {
+  font-size: 7vw;
+  color: rgb(122, 122, 122);
+  -webkit-text-fill-color: #fffbe7;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #fda085;
+  font-weight: bold;
+  opacity: 0.15;
+  letter-spacing: 0.2em;
+}
+
+/* Your previous homepage styles (hero, sections, etc.) */
+.oslab-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 10vw 3rem 10vw;
+  background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  min-height: 60vh;
+}
+.oslab-hero-content {
+  flex: 1;
+  margin-right: 2rem;
+}
+.oslab-hero-content h1 {
+  font-size: 3.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+.oslab-hero-content p {
+  font-size: 1.3rem;
+  color: #fffbe7;
+}
+.oslab-hero-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oslab-pic {
+  width: 260px;
+  height: 180px;
+  background: #fffbe7;
+  border: 2px dashed #fda085;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fda085;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+.oslab-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 10vw;
+  gap: 2rem;
+  background: #fff;
+  border-bottom: 1px solid #f6d36544;
+}
+.oslab-section.reverse {
+  flex-direction: row-reverse;
+  background: #fffbe7;
+}
+.oslab-section-content {
+  flex: 2;
+}
+.oslab-section-content h2 {
+  color: #fda085;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+.oslab-section-content p, .oslab-section-content ul {
+  font-size: 1.1rem;
+  color: #444;
+}
+.oslab-section-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oslab-footer {
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+  color: #fda085;
+  background: #fffbe7;
+  font-size: 1rem;
+  border-top: 1px solid #f6d36544;
+}
+@media (max-width: 900px) {
+  .oslab-hero, .oslab-section {
+    flex-direction: column;
+    padding: 3rem 2vw;
+    text-align: center;
+  }
+  .oslab-hero-content, .oslab-section-content {
+    margin-right: 0;
+  }
+  .oslab-section-img, .oslab-hero-img {
+    margin-bottom: 2rem;
+  }
+}
