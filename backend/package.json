@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "dockerode": "^4.0.7",
+    "express": "^5.1.0",
+    "ws": "^8.18.2"
   }
 }

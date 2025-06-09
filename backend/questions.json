@@ -1,0 +1,3 @@
+{
+  "q1": ["ls", "pwd", "cat test.txt"]
+}

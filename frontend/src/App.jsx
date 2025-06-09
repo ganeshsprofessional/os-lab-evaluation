@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SidebarLayout from "./components/SidebarLayout";
 import HomePage from "./components/HomePage";
 import DashboardPage from "./components/DashboardPage";
+import Terminal from "./components/Terminal";
 import "./styles/main.css";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
     content = <HomePage />;
   } else if (activeIndex === 1) {
     content = <DashboardPage />;
+  } else if (activeIndex === 2) {
+    content = <Terminal />;
   } else {
     content = <div style={{ padding: "2rem" }}>Page under construction</div>;
   }
