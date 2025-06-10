@@ -22,19 +22,79 @@ wss.on("connection", async (ws) => {
   const history = [];
   let commandBuffer = "";
 
-  const container = await docker.createContainer({
-    Image: "secure-terminal-image", // build from Dockerfile
-    Tty: true,
-    OpenStdin: true,
-    HostConfig: {
-      Memory: 128 * 1024 * 1024, // 128MB
-      CpuShares: 256,
-      ReadonlyRootfs: true,
-      AutoRemove: true,
-    },
-  });
+  const userId = "user123"; // or use session/user ID from your auth
+  const volumeName = `volume_user_${userId}`;
+  console.log(userId);
 
-  await container.start();
+  async function getOrCreateContainer(userId) {
+    const containerName = `terminal_user_${userId}`;
+
+    const containers = await docker.listContainers({ all: true });
+    const existing = containers.find((c) =>
+      c.Names.includes("/" + containerName)
+    );
+
+    let container;
+
+    if (existing) {
+      container = docker.getContainer(existing.Id);
+      const info = await container.inspect();
+
+      // Optionally, restart if it's stopped
+      if (info.State.Status !== "running") {
+        await container.start();
+      }
+
+      console.log(`Reusing existing container: ${containerName}`);
+    } else {
+      container = await docker.createContainer({
+        name: `terminal_user_${userId}`,
+        Image: "secure-terminal-image",
+        Tty: true,
+        OpenStdin: true,
+        AttachStdin: true,
+        AttachStdout: true,
+        AttachStderr: true,
+        HostConfig: {
+          Memory: 256 * 1024 * 1024, // 256MB per user (tune based on server capacity)
+          CpuShares: 256, // Fair CPU time
+          Binds: [`${volumeName}:/home/student`], // Mount persistent volume
+          AutoRemove: true, // Remove container after it stops
+          CapDrop: ["ALL"], // Drop all Linux capabilities for security
+          CapAdd: ["CHOWN", "SETUID"], // Add back only what's needed
+          NetworkMode: "none", // Optional: isolate network
+        },
+      });
+
+      await container.start();
+      console.log(`Created and started new container: ${containerName}`);
+    }
+
+    return container;
+  }
+
+  const container = await getOrCreateContainer(userId);
+
+  // const container = await docker.createContainer({
+  //   name: `terminal_user_${userId}`,
+  //   Image: "secure-terminal-image",
+  //   Tty: true,
+  //   OpenStdin: true,
+  //   AttachStdin: true,
+  //   AttachStdout: true,
+  //   AttachStderr: true,
+  //   HostConfig: {
+  //     Memory: 256 * 1024 * 1024, // 256MB per user (tune based on server capacity)
+  //     CpuShares: 256, // Fair CPU time
+  //     Binds: [`${volumeName}:/home/student`], // Mount persistent volume
+  //     AutoRemove: true, // Remove container after it stops
+  //     CapDrop: ["ALL"], // Drop all Linux capabilities for security
+  //     CapAdd: ["CHOWN", "SETUID"], // Add back only what's needed
+  //     NetworkMode: "none", // Optional: isolate network
+  //   },
+  // });
+
+  // await container.start();
 
   const exec = await container.exec({
     Cmd: ["/bin/bash"],
