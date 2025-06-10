@@ -6,6 +6,7 @@ import axios from "../api/axiosInstance";
 
 const Terminal = () => {
   let [commandsToTrack, setCommandsToTrack] = useState([]);
+  const [userId, setUserId] = useState(null);
   const terminalRef = useRef(null);
   const xtermRef = useRef(null);
   const socketRef = useRef(null);
@@ -14,14 +15,20 @@ const Terminal = () => {
 
   useEffect(() => {
     const getCommands = async () => {
-      const response = await fetch("http://localhost:3001/questions");
-      setCommandsToTrack(await response.json());
-      console.log(commandsToTrack);
+      const response = await axios.get("/questions");
+      setCommandsToTrack(response.data);
     };
     getCommands();
   }, []);
 
   useEffect(() => {
+    if (!userId) {
+      const id = prompt("Enter your user ID:");
+      if (id) {
+        setUserId(id);
+      }
+      return;
+    }
     const xterm = new XTerm({
       cursorBlink: true,
       theme: {
@@ -34,7 +41,9 @@ const Terminal = () => {
     xterm.focus();
     xtermRef.current = xterm;
 
-    const socket = new WebSocket("ws://localhost:3001/ws");
+    const socket = new WebSocket(
+      `ws://localhost:3001/ws?userId=${encodeURIComponent(userId)}`
+    );
     socketRef.current = socket;
 
     socket.onopen = () => {
@@ -67,7 +76,7 @@ const Terminal = () => {
       socket.close();
       xterm.dispose();
     };
-  }, []);
+  }, [userId]);
 
   return (
     <div className={styles.container}>

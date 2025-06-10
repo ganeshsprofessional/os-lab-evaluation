@@ -4,6 +4,7 @@ import { WebSocketServer } from "ws";
 import { PassThrough } from "stream";
 import Docker from "dockerode";
 import fs from "fs";
+import url from "node:url";
 
 const app = express();
 const port = 3001;
@@ -23,13 +24,16 @@ app.get("/questions", (req, res) => {
 
 const wss = new WebSocketServer({ server });
 
-wss.on("connection", async (ws) => {
+wss.on("connection", async (ws, req) => {
   const ruleSet = questions["q1"];
   const matched = new Set();
   const history = [];
   let commandBuffer = "";
 
-  const userId = "user123"; // or use session/user ID from your auth
+  const parameters = url.parse(req.url, true).query;
+  const userId = parameters.userId;
+
+  // const userId = "user123"; // or use session/user ID from your auth
   const volumeName = `volume_user_${userId}`;
   console.log(userId);
 
