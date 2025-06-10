@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { WebSocketServer } from "ws";
 import { PassThrough } from "stream";
 import Docker from "dockerode";
@@ -8,10 +9,16 @@ const app = express();
 const port = 3001;
 const docker = new Docker();
 
+app.use(cors());
+
 const questions = JSON.parse(fs.readFileSync("./questions.json"));
 
 const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+});
+
+app.get("/questions", (req, res) => {
+  res.json(questions["q1"]);
 });
 
 const wss = new WebSocketServer({ server });
@@ -125,6 +132,12 @@ wss.on("connection", async (ws) => {
     if (cmd.data === "\r") {
       if (ruleSet.filter((el) => el === commandBuffer).length !== 0) {
         matched.add(commandBuffer);
+        ws.send(
+          JSON.stringify({
+            type: "matched",
+            command: commandBuffer,
+          })
+        );
       }
       commandBuffer = "";
     } else if (cmd.data === "\u007f") {

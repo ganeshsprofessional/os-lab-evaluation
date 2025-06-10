@@ -2,12 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { Terminal as XTerm } from "xterm";
 import "xterm/css/xterm.css";
 import styles from "./Terminal.module.css";
+import axios from "../api/axiosInstance";
 
 const Terminal = () => {
+  let [commandsToTrack, setCommandsToTrack] = useState([]);
   const terminalRef = useRef(null);
   const xtermRef = useRef(null);
   const socketRef = useRef(null);
   const [progress, setProgress] = useState(0);
+  const [progressCommand, setProgressCommand] = useState([]);
+
+  useEffect(() => {
+    const getCommands = async () => {
+      const response = await fetch("http://localhost:3001/questions");
+      setCommandsToTrack(await response.json());
+      console.log(commandsToTrack);
+    };
+    getCommands();
+  }, []);
 
   useEffect(() => {
     const xterm = new XTerm({
@@ -36,6 +48,11 @@ const Terminal = () => {
           xterm.write(data.data.toString());
         } else if (data.type === "progress") {
           setProgress(((data.matched.length * 100) / data.total).toFixed(2));
+        } else if (data.type === "matched") {
+          setProgressCommand((prev) => {
+            console.log(prev);
+            return [...prev, data.command];
+          });
         }
       } catch (err) {
         // xterm.write(event.data);
@@ -62,6 +79,18 @@ const Terminal = () => {
             className={styles.progressBarFill}
             style={{ width: `${progress}%` }}
           ></div>
+        </div>
+        <div className={styles.progress}>
+          <ul>
+            {commandsToTrack.map((cmd) => (
+              <li
+                key={cmd}
+                className={progressCommand.includes(cmd) ? styles.done : ""}
+              >
+                {cmd}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
