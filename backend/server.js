@@ -19,13 +19,14 @@ const server = app.listen(port, () => {
 });
 
 app.get("/questions", (req, res) => {
-  res.json(questions["q1"]);
+  res.json(Object.keys(questions["q1"]));
 });
 
 const wss = new WebSocketServer({ server });
 
 wss.on("connection", async (ws, req) => {
-  const ruleSet = questions["q1"];
+  const ruleSet = Object.values(questions["q1"]);
+  const questionsSet = Object.keys(questions["q1"]);
   const matched = new Set();
   const history = [];
   let commandBuffer = "";
@@ -139,7 +140,10 @@ wss.on("connection", async (ws, req) => {
         ws.send(
           JSON.stringify({
             type: "matched",
-            command: commandBuffer,
+            // command: commandBuffer,
+            question: Object.entries(questions["q1"]).find(
+              ([k, v]) => v === commandBuffer
+            )[0],
           })
         );
       }

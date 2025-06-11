@@ -1,3 +1,7 @@
 {
-  "q1": ["ls", "pwd", "cat test.txt"]
+  "q1": {
+    "List all the files in the current directory": "ls",
+    "Print the current directory": "pwd",
+    "Print the content of the file 'test.txt'": "cat test.txt"
+  }
 }

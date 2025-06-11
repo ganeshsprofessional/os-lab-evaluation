@@ -5,20 +5,20 @@ import styles from "./Terminal.module.css";
 import axios from "../api/axiosInstance";
 
 const Terminal = () => {
-  let [commandsToTrack, setCommandsToTrack] = useState([]);
+  let [questionsToTrack, setQuestionsToTrack] = useState([]);
   const [userId, setUserId] = useState(null);
   const terminalRef = useRef(null);
   const xtermRef = useRef(null);
   const socketRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  const [progressCommand, setProgressCommand] = useState([]);
+  const [progressQuestion, setProgressQuestion] = useState([]);
 
   useEffect(() => {
-    const getCommands = async () => {
+    const getQuestions = async () => {
       const response = await axios.get("/questions");
-      setCommandsToTrack(response.data);
+      setQuestionsToTrack(response.data);
     };
-    getCommands();
+    getQuestions();
   }, []);
 
   useEffect(() => {
@@ -58,9 +58,9 @@ const Terminal = () => {
         } else if (data.type === "progress") {
           setProgress(((data.matched.length * 100) / data.total).toFixed(2));
         } else if (data.type === "matched") {
-          setProgressCommand((prev) => {
+          setProgressQuestion((prev) => {
             console.log(prev);
-            return [...prev, data.command];
+            return [...prev, data.question];
           });
         }
       } catch (err) {
@@ -91,12 +91,12 @@ const Terminal = () => {
         </div>
         <div className={styles.progress}>
           <ul>
-            {commandsToTrack.map((cmd) => (
+            {questionsToTrack.map((qs) => (
               <li
-                key={cmd}
-                className={progressCommand.includes(cmd) ? styles.done : ""}
+                key={qs}
+                className={progressQuestion.includes(qs) ? styles.done : ""}
               >
-                {cmd}
+                {qs}
               </li>
             ))}
           </ul>

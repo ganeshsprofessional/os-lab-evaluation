@@ -29,6 +29,10 @@ RUN groupadd --gid $USER_GID $USERNAME && \
 # Set working directory
 WORKDIR /home/$USERNAME
 
+# Create a test.txt file with content before switching user
+RUN echo "Hello, this is a test file" > /home/$USERNAME/test.txt && \
+    chown $USERNAME:$USERNAME /home/$USERNAME/test.txt
+
 # Ensure ownership
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
